@@ -1,0 +1,9 @@
+#more-image{
+  width: 200px;
+  transition: transform 0.3s;
+}
+
+#more-image:hover {
+  transform: scale(1.2);
+
+}

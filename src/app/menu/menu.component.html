@@ -1,0 +1,161 @@
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">DANH SÁCH MENU</h6>
+    </div>
+    <div class="card-body">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="margin-bottom: 15px;">
+        Thêm mới
+      </button>
+
+      <div class="table-responsive">
+        <table class="table table-bordered"   width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>STT</th>
+              <th>Tên menu</th>
+              <!-- <th>Mô tả</th> -->
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of myResult; let i = index" (click)="getdatabyID(item.id)">
+              <td>{{ i + 1 }}</td>
+              <td>{{ item.name }}</td>
+              <!-- <td>{{ item.description }}</td> -->
+              <td>
+                <button (click)="getdatabyID(item.id)" type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModaldetails" style="margin-right: 10px;">
+                  Chi tiết
+                </button>
+                <button (click)="getdatabyID(item.id)" type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModaledit" style="margin-right: 10px;">
+                  Sửa
+                </button>
+                <button (click)="confirmDelete(item.id)" type="button" class="btn btn-danger">Xóa</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- /.container-fluid -->
+
+<!-- Thêm mới -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Thêm mới menu</h5>
+        <button id="close-form" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="Create()">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Tên menu</label>
+            <input type="text" class="form-control" id="recipient-name" [(ngModel)]="formData.name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Mô tả</label>
+            <input type="text" class="form-control" id="message-text" [(ngModel)]="formData.description" name="description" required>
+          </div>
+          <div class="form-group">
+            <label for="dated" class="col-form-label">Ngày tạo</label>
+            <input type="text" class="form-control" id="dated" [(ngModel)]="formData.dated" name="dated" required>
+          </div>
+          <div class="form-group">
+            <label for="creator" class="col-form-label">Người tạo</label>
+            <input type="text" class="form-control" id="creator" [(ngModel)]="formData.creator" name="creator" required>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+            <button type="submit" class="btn btn-primary">Thêm mới</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ================================================================ -->
+<!-- sửa -->
+<div class="modal fade" id="exampleModaledit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-edit" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel-edit">Thông tin menu</h5>
+        <button id="close-form-edit" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="confirmUpdate()">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Tên menu</label>
+            <input type="text" class="form-control" id="recipient-name" [(ngModel)]="formData.name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Mô tả</label>
+            <input type="text" class="form-control" id="message-text" [(ngModel)]="formData.description" name="description" required>
+          </div>
+          <div class="form-group">
+            <label for="dated" class="col-form-label">Ngày tạo</label>
+            <input type="text" class="form-control"  value=" {{formData.dated | date : 'dd/MM/yyyy'}}" name="dated" required>
+          </div>
+          <div class="form-group">
+            <label for="creator" class="col-form-label">Người tạo</label>
+            <input type="text" class="form-control" id="creator" [(ngModel)]="formData.creator" name="creator" required>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+            <button type="submit" class="btn btn-primary">Cập nhật</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ================================================================ -->
+<!-- chi tiết -->
+<div class="modal fade" id="exampleModaldetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-edit" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel-edit">Thông tin menu</h5>
+        <button id="close-form-edit" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="confirmUpdate()">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Tên menu</label>
+            <input type="text" class="form-control" id="recipient-name" [(ngModel)]="formData.name" name="name" readonly>
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Mô tả</label>
+            <input type="text" class="form-control" id="message-text" [(ngModel)]="formData.description" name="description" readonly>
+          </div>
+          <div class="form-group">
+            <label for="dated" class="col-form-label">Ngày tạo</label>
+            <input type="text" class="form-control"  value=" {{formData.dated | date : 'dd/MM/yyyy'}}" name="dated" readonly>
+          </div>
+          <div class="form-group">
+            <label for="creator" class="col-form-label">Người tạo</label>
+            <input type="text" class="form-control" id="creator" [(ngModel)]="formData.creator" name="creator" readonly>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

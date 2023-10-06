@@ -1,0 +1,236 @@
+<!-- Begin Page Content -->
+<div
+   class="container-fluid">
+
+   <!-- DataTales Example -->
+   <div class="card shadow mb-4">
+      <div class="card-header py-3">
+         <h6 class="m-0 font-weight-bold text-primary">DANH SÁCH BÀI VIẾT</h6>
+      </div>
+      <div
+         class="card-body">
+         <!-- Button trigger modal -->
+         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="margin-bottom: 15px;">
+            Thêm mới
+         </button>
+
+         <div class="table-responsive">
+            <table class="table table-bordered" width="100%" cellspacing="0" id="dtBasicExample">
+               <thead>
+                  <tr>
+                     <th>STT</th>
+                     <th>Tên bài viết</th>
+                     <th>Ngày tạo</th>
+                     <th>Người tạo</th>
+                     <th></th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr *ngFor="let item of myResult; let i = index" (click)="getDetail(item.id)">
+                     <td>{{ i + 1 }}</td>
+                     <td>{{ item.name }}</td>
+                     <td>{{ item.dated| date:'dd/MM/yyyy'}}</td>
+                     <td>{{ item.created }}</td>
+                     <td>
+                        <button (click)="getDetail(item.id)" type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModaldetails" style="margin-right: 10px;">
+                           Chi tiết
+                        </button>
+                        <button (click)="getDetail(item.id)" type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModaledit" style="margin-right: 10px;">
+                           Sửa
+                        </button>
+                        <button (click)="confirmDelete(item.id)" type="button" class="btn btn-danger">Xóa</button>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </div>
+</div>
+
+<!-- Thêm mới -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Thêm mới bài viết</h5>
+            <button id="close-form" type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <form (ngSubmit)="create()">
+
+               <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Ảnh</label>
+                  <input type="text" class="form-control" id="Created" [(ngModel)]="formData.image" name="image" required>
+               </div>
+
+               <div class="form-group">
+                  <!-- <label for="recipient-name" class="col-form-label">Danh mục</label>
+                  <input type="text" class="form-control" [(ngModel)]="formData.categories_ID" name="categories_ID" required> -->
+                  <label for="categories_ID">Danh mục:</label>
+                  <select id="categories_ID"[(ngModel)]="formData.categories_ID" name="categories_ID" style="border-color: #ccc;height: 40px;border-radius: 5px;" required >
+                     <option value="2">Thông báo chính thức</option>
+                     <option value="3">Hoạt động sinh viên</option>
+                     <option value="4">Nghiên cứu và khoa học</option>
+                     <option value="5" >Thông báo học bổng và hỗ trợ tài chính</option>
+                     <option value="6">Đối tác và hợp tác</option>
+                     <option value="7">Chương trình học</option>
+                     <option value="8"selected>Hoạt động xã hội và văn hóa</option>
+                  </select>
+                </div>
+
+               <div class="form-group">
+                  <label for="message-text" class="col-form-label">Tên bài viết</label>
+                  <input type="text" class="form-control" [(ngModel)]="formData.name" name="name" required>
+               </div>
+               <div class="form-group">
+                  <label for="" class="col-form-label">Mô tả</label>
+                  <input type="text" class="form-control" [(ngModel)]="formData.description" name="description" required>
+               </div>
+               <div class="form-group">
+                  <label for="" class="col-form-label">Nội dung</label>
+                  <input type="text" class="form-control" [(ngModel)]="formData.content" name="content" required>
+               </div>
+               <div class="form-group">
+                  <label for="" class="col-form-label">Ngày tạo</label>
+                  <input type="date" class="form-control" [(ngModel)]="formData.dated" name="dated" required>
+               </div>
+               <div class="form-group">
+                  <label for="" class="col-form-label">Người tạo</label>
+                  <input type="text" class="form-control" [(ngModel)]="formData.created" name="created" required>
+               </div>
+               <div class="form-group">
+                  <label for="" class="col-form-label">ListMoreImage</label>
+                  <input type="text" class="form-control" [(ngModel)]="formData.ListMoreImage" name="ListMoreImage" required>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                  <button type="submit" class="btn btn-primary">Thêm mới</button>
+               </div>
+            </form>
+
+         </div>
+      </div>
+   </div>
+</div>
+<!-- ================================================================ -->
+<!-- sửa -->
+<div class="modal fade" id="exampleModaledit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-edit" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel-edit">Sửa thông tin bài viết</h5>
+            <button id="close-form-edit" type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <form (ngSubmit)="confirmEdit()">
+               <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Ảnh</label>
+                  <input type="text" class="form-control" id="Created" [(ngModel)]="formData.image" name="image" required>
+               </div>
+               <div class="form-group">
+                  <div class="form-group">
+                     <a href="/more-image/{{formData.id}}" class="btn btn-success">
+                        Ảnh khác
+                     </a>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Danh mục</label>
+                  <input type="text" class="form-control" id="Created" [(ngModel)]="formData.categories_ID" name="categories_ID" required>
+               </div>
+               <div class="form-group">
+                  <label for="message-text" class="col-form-label">Tên bài viết</label>
+                  <input type="text" class="form-control" id="Created" [(ngModel)]="formData.name" name="name" required>
+               </div>
+               <div class="form-group">
+                  <label for="Created" class="col-form-label">Mô tả</label>
+                  <input type="text" class="form-control" id="Created" [(ngModel)]="formData.description" name="description" required>
+               </div>
+               <div class="form-group">
+                  <label for="Created" class="col-form-label">Nội dung</label>
+                  <!-- <input type="text" class="form-control" id="Created" [(ngModel)]="formData.content" name="content" required> -->
+                  <textarea rows="10" cols="50" pinputtextarea [(ngModel)]="formData.content" name="content"></textarea>
+               </div>
+               <div class="form-group">
+                  <label for="Created" class="col-form-label">Ngày tạo</label>
+                  <input type="text" class="form-control" value=" {{formData.dated | date : 'dd/MM/yyyy'}}" name="dated" required>
+               </div>
+               <div class="form-group">
+                  <label for="Created" class="col-form-label">Người tạo</label>
+                  <input type="text" class="form-control" id="Created" [(ngModel)]="formData.created" name="created" required>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                  <button type="submit" class="btn btn-primary">Cập nhật</button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- ================================================================ -->
+<!-- ================================================================ -->
+<!-- chi tiết -->
+   <div class="modal fade" id="exampleModaldetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-edit" aria-hidden="true"> <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel-edit">Thông tin bài viết</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <form (ngSubmit)="confirmEdit()">
+               <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Ảnh</label>
+                  <img
+                  src="/assets/img/NewArticle/{{formData.image}}" alt="#" style="width: 100%; height: 50%;;margin-top: 10px;margin-bottom: 10px;">
+               <!-- <input type="text" class="form-control" id="Created" [(ngModel)]="formData.image" name="image" readonly> -->
+               </div>
+               <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Ảnh khác</label>
+                  <div class="row">
+                     <div class="col-3" *ngFor="let item of formData.listMoreImage">
+                        <img id="more-image" src="/assets/img/MoreImage/{{item.moreImage}}" alt="#" style="width: 100px;height: 80px;margin: 10px 0px;">
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Danh mục</label>
+                  <input type="text" class="form-control" [(ngModel)]="formData.categories_ID" name="categories_ID" readonly>
+               </div>
+               <div class="form-group">
+                  <label for="message-text" class="col-form-label">Tên bài viết</label>
+                  <input type="text" class="form-control" [(ngModel)]="formData.name" name="name" readonly>
+               </div>
+               <div class="form-group">
+                  <label for="Created" class="col-form-label">Mô tả</label>
+                  <input type="text" class="form-control" [(ngModel)]="formData.description" name="description" readonly>
+               </div>
+               <div class="form-group">
+                  <label for="Created" class="col-form-label">Nội dung</label>
+                  <!-- <input type="text" class="form-control" id="Created" [(ngModel)]="formData.content" name="content" readonly> -->
+                  <textarea rows="10" cols="50" pinputtextarea [(ngModel)]="formData.content" name="content" readonly></textarea>
+               </div>
+               <div class="form-group">
+                  <label for="Created" class="col-form-label">Ngày tạo</label>
+                  <input type="text" class="form-control" value=" {{formData.dated | date : 'dd/MM/yyyy'}}" name="dated" readonly>
+               </div>
+               <div class="form-group">
+                  <label for="Created" class="col-form-label">Người tạo</label>
+                  <input type="text" class="form-control" id="Created" [(ngModel)]="formData.created" name="created" readonly>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- ================================================================ -->

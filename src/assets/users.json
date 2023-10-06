@@ -1,0 +1,54 @@
+{
+  "items": [
+    {
+      "STT": 1,
+      "tendanhmuc": "Đồ điện tử",
+      "mota": "Sản phẩm điện tử gia dụng"
+    },
+    {
+      "STT": 2,
+      "tendanhmuc": "Thời trang",
+      "mota": "Quần áo và phụ kiện thời trang"
+    },
+    {
+      "STT": 3,
+      "tendanhmuc": "Đồ ăn",
+      "mota": "Thực phẩm và đồ uống"
+    },
+    {
+      "STT": 4,
+      "tendanhmuc": "Sách",
+      "mota": "Sách và tài liệu đọc"
+    },
+    {
+      "STT": 5,
+      "tendanhmuc": "Xe hơi",
+      "mota": "Xe ô tô và phụ tùng"
+    },
+    {
+      "STT": 6,
+      "tendanhmuc": "Máy tính",
+      "mota": "Máy tính và phần mềm"
+    },
+    {
+      "STT": 7,
+      "tendanhmuc": "Điện thoại di động",
+      "mota": "Điện thoại di động và tablet"
+    },
+    {
+      "STT": 8,
+      "tendanhmuc": "Thể thao",
+      "mota": "Thể thao và dụng cụ thể thao"
+    },
+    {
+      "STT": 9,
+      "tendanhmuc": "Nhà và vườn",
+      "mota": "Trang trí nhà cửa và quản lý vườn"
+    },
+    {
+      "STT": 10,
+      "tendanhmuc": "Du lịch",
+      "mota": "Dịch vụ và sản phẩm du lịch"
+    }
+  ]
+}
