@@ -43,6 +43,7 @@ export class NewArticleComponent implements OnInit {
         console.log("Thêm bản ghi thành công", response);
         this.closeForm();
         this.getData();
+        this.formData = {};
       }, error => {
         console.log('Lỗi', error);
       })
@@ -74,6 +75,8 @@ export class NewArticleComponent implements OnInit {
         console.log('Sửa thành công', response);
         this.closeFormEdit();
         this.getData();
+        this.formData = {};
+
       }, error => {
         console.error('Lỗi', error);
       })

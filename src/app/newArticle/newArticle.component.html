@@ -71,13 +71,11 @@
                <div class="form-group">
                   <label for="categories_ID">Danh mục:</label>
                   <select id="categories_ID" [(ngModel)]="formData.categories_ID" name="categories_ID" style="border-color: #ccc;height: 40px;border-radius: 5px;margin-left: 30px;" required>
-                     <option value="2">Thông báo chính thức</option>
-                     <option value="3">Hoạt động sinh viên</option>
-                     <option value="4">Nghiên cứu và khoa học</option>
-                     <option value="5">Thông báo học bổng và hỗ trợ tài chính</option>
-                     <option value="6">Đối tác và hợp tác</option>
-                     <option value="7">Chương trình học</option>
-                     <option value="8" selected>Hoạt động xã hội và văn hóa</option>
+                     <option value="15">THÔNG  BÁO CHUNG</option>
+                     <option value="16">SỰ KIỆN VÀ HOẠT ĐỘNG</option>
+                     <option value="17">NGHIÊN CỨU VÀ CÔNG BỐ KHOA HỌC</option>
+                     <option value="18">HOẠT ĐỘNG SINH VIÊN</option>
+                     <option value="19">ĐỐI TÁC VÀ NGHIÊN CỨU HỢP TÁC</option>
                   </select>
                </div>
                <div class="form-group">
@@ -86,11 +84,11 @@
                </div>
                <div class="form-group">
                   <label for="" class="col-form-label">Mô tả</label>
-                  <p-editor [(ngModel)]="formData.description" name="description" [style]="{ height: '250px' }"></p-editor>
+                  <p-editor [(ngModel)]="formData.description" name="description" [style]="{ height: '100px' }"></p-editor>
                </div>
                <div class="form-group">
                   <label for="" class="col-form-label">Nội dung</label>
-                  <p-editor [(ngModel)]="formData.content" name="content" [style]="{ height: '300px' }"></p-editor>
+                  <p-editor [(ngModel)]="formData.content" name="content" [style]="{ height: '350px' }"></p-editor>
                </div>
                <!-- <div class="form-group">
                                                 <label for="" class="col-form-label">Ngày tạo</label>
@@ -155,12 +153,12 @@
                </div>
                <div class="form-group">
                   <label for="Created" class="col-form-label">Mô tả</label>
-                  <p-editor [(ngModel)]="formData.description" name="description" [style]="{ height: '250px' }"></p-editor>
+                  <p-editor [(ngModel)]="formData.description" name="description" [style]="{ height: '100px' }"></p-editor>
 
                </div>
                <div class="form-group">
                   <label for="Created" class="col-form-label">Nội dung</label>
-                  <p-editor [(ngModel)]="formData.content" name="content" [style]="{ height: '250px' }"></p-editor>
+                  <p-editor [(ngModel)]="formData.content" name="content" [style]="{ height: '350px' }"></p-editor>
                </div>
                <div class="form-group">
                   <label for="Created" class="col-form-label">Ngày tạo</label>
@@ -196,14 +194,14 @@
                   <label for="recipient-name" class="col-form-label">Ảnh</label>
                   <img class="img-input" src="{{formData.image}}" alt="">
                </div>
-               <div class="form-group">
+               <!-- <div class="form-group">
                   <label for="recipient-name" class="col-form-label">Ảnh khác</label>
                   <div class="row">
                      <div class="col-3" *ngFor="let item of formData.listMoreImage">
                         <img id="more-image" src="{{item.moreImage}}" alt="#" style="width: 230px;height: 180px;margin: 10px 0px;">
                      </div>
                   </div>
-               </div>
+               </div> -->
                <div class="form-group">
                   <label for="recipient-name" class="col-form-label">Danh mục</label>
                   <input type="text" class="form-control" [(ngModel)]="formData.categories_ID" name="categories_ID" readonly>
@@ -214,12 +212,12 @@
                </div>
                <div class="form-group">
                   <label for="Created" class="col-form-label">Mô tả</label>
-                  <p-editor [(ngModel)]="formData.description" name="description" [style]="{ height: '250px' }" [readonly]="true"></p-editor>
+                  <p-editor [(ngModel)]="formData.description" name="description" [style]="{ height: '100px' }" [readonly]="true"></p-editor>
 
                </div>
                <div class="form-group">
                   <label for="Created" class="col-form-label">Nội dung</label>
-                  <p-editor [(ngModel)]="formData.content" name="content" [style]="{ height: '250px' }" [readonly]="true"></p-editor>
+                  <p-editor [(ngModel)]="formData.content" name="content" [style]="{ height: '450px' }" [readonly]="true"></p-editor>
                </div>
                <div class="form-group">
                   <label for="Created" class="col-form-label">Ngày tạo</label>

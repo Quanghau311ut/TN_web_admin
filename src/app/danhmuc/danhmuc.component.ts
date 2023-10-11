@@ -8,15 +8,25 @@ import { CategoriesService } from '../services/categories.service';
 })
 export class DanhmucComponent implements OnInit {
   myResult: any;
-  formData: any = {};
+  formData: any = {
+    id: '0',
+    name: '',
+    description: '',
+    dated: new Date(),
+    created: 'admin',
+    newActicles: [],
+  };
 
   constructor(
     private _categoriesService: CategoriesService
-    ) {}
+  ) { }
 
   ngOnInit() {
     this.getData();
   }
+
+
+
   //Getdata
   getData() {
     this._categoriesService.getData().then((result: any) => {
@@ -34,6 +44,8 @@ export class DanhmucComponent implements OnInit {
         console.log('Thêm bản ghi thành công:', response);
         this.closeForm();
         this.getData();
+        this.formData={};
+
       },
       error => {
         console.error('Lỗi thêm bản ghi:', error);
@@ -45,6 +57,7 @@ export class DanhmucComponent implements OnInit {
     this._categoriesService.getdatabyID(items).then(
       (editData: any) => {
         this.formData = editData;
+
       },
       error => {
         console.error('lỗi:', error);
@@ -60,19 +73,21 @@ export class DanhmucComponent implements OnInit {
         console.log('Cập nhật thành công:', response);
         this.closeFormEdit();
         this.getData();
+        this.formData={};
+
       },
       error => {
         console.error('Lỗi cập nhật:', error);
       }
     );
   }
-    // //Thông báo
-    confirmUpdate() {
-      const confirmResult = confirm("Bạn có chắc muốn cập nhật thông tin danh mục?");
-      if (confirmResult) {
-        this.update(this.formData.id);
-      }
+  // //Thông báo
+  confirmUpdate() {
+    const confirmResult = confirm("Bạn có chắc muốn cập nhật thông tin danh mục?");
+    if (confirmResult) {
+      this.update(this.formData.id);
     }
+  }
 
 
   //Xóa
@@ -100,12 +115,15 @@ export class DanhmucComponent implements OnInit {
     const closeElement = document.getElementById('close-form');
     if (closeElement) {
       closeElement.click();
+      this.formData = {};
     }
   }
   closeFormEdit() {
     const closeElement = document.getElementById('close-form-edit');
     if (closeElement) {
       closeElement.click();
+      this.formData = {};
+
     }
   }
 

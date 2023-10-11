@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { SlidersService } from '../services/sliders.service';
 
+
+interface UploadEvent {
+  originalEvent: Event;
+  files: File[];
+}
+
 @Component({
   selector: 'app-slider',
   templateUrl: './slider.component.html',
@@ -8,7 +14,13 @@ import { SlidersService } from '../services/sliders.service';
 })
 export class SliderComponent implements OnInit {
   myResult:any;
-  formData:any={};
+  formData:any={
+    id:'0',
+    image: '',
+    name: '',
+    content: '',
+    dated: new Date(),
+  };
   constructor( private _sliderService: SlidersService) { }
 
   ngOnInit() {
@@ -89,5 +101,19 @@ export class SliderComponent implements OnInit {
       closeElement.click();
     }
   }
+  onUpload(event: UploadEvent) {
+    const file = event.files[0];
 
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.formData.image = reader.result as string;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  deleteImage() {
+    this.formData.image = null;
+  }
 }

@@ -14,7 +14,7 @@ export class IntroduceComponent implements OnInit {
   formData:any={
     image: '',
     name: '',
-    description: '',
+    description: ' ',
     content: '',
     creator:'admin',
     dated:new Date()
@@ -38,6 +38,7 @@ export class IntroduceComponent implements OnInit {
     .then(response=>{
       console.log('Thêm bản ghi thành công',response);
       this.closeForm();
+      this.formData={};
       this.getData();
     },error=>{
       console.log('Lỗi',error);
@@ -58,6 +59,7 @@ export class IntroduceComponent implements OnInit {
     .then(response=>{
       console.log('Cập nhật thành công bản ghi có id ='+`${id}`, response);
       this.closeFormEdit();
+      this.formData={};
       this.getData();
     },error=>{
       console.error('Lỗi',error);
@@ -92,12 +94,14 @@ export class IntroduceComponent implements OnInit {
     const closeElement = document.getElementById('close-form');
     if (closeElement) {
       closeElement.click();
+      this.formData={};
     }
   }
   closeFormEdit() {
     const closeElement = document.getElementById('close-form-edit');
     if (closeElement) {
       closeElement.click();
+      this.formData={};
     }
   }
 

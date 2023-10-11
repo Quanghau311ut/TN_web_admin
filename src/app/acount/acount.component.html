@@ -62,23 +62,23 @@
         <form (ngSubmit)="create()">
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Họ và tên:</label>
-            <input type="text" class="form-control" id="recipient-name" [(ngModel)]="formData.name" name="name" required>
+            <input type="text" class="form-control"  [(ngModel)]="formData.name" name="name" required>
           </div>
           <div class="form-group">
             <label for="message-text" class="col-form-label">Địa chỉ</label>
-            <input type="text" class="form-control" id="message-text" [(ngModel)]="formData.address" name="address" required>
+            <input type="text" class="form-control"  [(ngModel)]="formData.address" name="address" required>
           </div>
           <div class="form-group">
             <label for="Created" class="col-form-label">Năm sinh</label>
-            <input type="date" class="form-control" id="Created" [(ngModel)]="formData.dateofbirth" name="dateofbirth" required>
+            <input type="date" class="form-control"  [(ngModel)]="formData.dateofbirth" name="dateofbirth" required>
           </div>
           <div class="form-group">
             <label for="Created" class="col-form-label">Email</label>
-            <input type="email" class="form-control" id="Created" [(ngModel)]="formData.email" name="email" required>
+            <input type="email" class="form-control"  [(ngModel)]="formData.email" name="email" required>
           </div>
           <div class="form-group">
             <label for="Created" class="col-form-label">Username</label>
-            <input type="text" class="form-control" id="Created" [(ngModel)]="formData.username" name="username" required>
+            <input type="text" class="form-control"  [(ngModel)]="formData.username" name="username" required>
           </div>
           <div class="form-group">
             <label for="Created" class="col-form-label">Password</label>
@@ -108,11 +108,11 @@
         <form (ngSubmit)="confirmEidt()">
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Họ và tên:</label>
-            <input type="text" class="form-control" id="edit" [(ngModel)]="formData.name" name="name" required>
+            <input type="text" class="form-control"  [(ngModel)]="formData.name" name="name" required>
           </div>
           <div class="form-group">
             <label for="message-text" class="col-form-label">Địa chỉ</label>
-            <input type="text" class="form-control" id="edit" [(ngModel)]="formData.address" name="address" required>
+            <input type="text" class="form-control" [(ngModel)]="formData.address" name="address" required>
           </div>
           <div class="form-group">
             <label for="Created" class="col-form-label">Năm sinh</label>
@@ -120,15 +120,15 @@
           </div>
           <div class="form-group">
             <label for="Created" class="col-form-label">Email</label>
-            <input type="email" class="form-control" id="edit" [(ngModel)]="formData.email" name="email" required>
+            <input type="email" class="form-control"  [(ngModel)]="formData.email" name="email" required>
           </div>
           <div class="form-group">
             <label for="Created" class="col-form-label">Username</label>
-            <input type="text" class="form-control" id="edit" [(ngModel)]="formData.username" name="username"  readonly>
+            <input type="text" class="form-control"  [(ngModel)]="formData.username" name="username"  readonly>
           </div>
           <div class="form-group">
             <label for="Created" class="col-form-label">Password</label>
-            <input type="password" class="form-control" id="edit" [(ngModel)]="formData.password" name="password" required>
+            <input type="password" class="form-control"  [(ngModel)]="formData.password" name="password" required>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
@@ -155,11 +155,11 @@
         <form (ngSubmit)="confirmEidt()">
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Họ và tên:</label>
-            <input type="text" class="form-control" id="details" [(ngModel)]="formData.name" name="name" readonly>
+            <input type="text" class="form-control"  [(ngModel)]="formData.name" name="name" readonly>
           </div>
           <div class="form-group">
             <label for="message-text" class="col-form-label">Địa chỉ</label>
-            <input type="text" class="form-control" id="details" [(ngModel)]="formData.address" name="address" readonly>
+            <input type="text" class="form-control"  [(ngModel)]="formData.address" name="address" readonly>
           </div>
           <div class="form-group">
             <label for="Created" class="col-form-label">Năm sinh</label>
@@ -167,15 +167,15 @@
           </div>
           <div class="form-group">
             <label for="Created" class="col-form-label">Email</label>
-            <input type="email" class="form-control" id="details" [(ngModel)]="formData.email" name="email" readonly>
+            <input type="email" class="form-control"  [(ngModel)]="formData.email" name="email" readonly>
           </div>
           <div class="form-group">
             <label for="Created" class="col-form-label">Username</label>
-            <input type="text" class="form-control" id="details" [(ngModel)]="formData.username" name="username" readonly>
+            <input type="text" class="form-control"  [(ngModel)]="formData.username" name="username" readonly>
           </div>
           <div class="form-group">
             <label for="Created" class="col-form-label">Password</label>
-            <input type="password" class="form-control" id="details" [(ngModel)]="formData.password" name="password" readonly>
+            <input type="password" class="form-control"  [(ngModel)]="formData.password" name="password" readonly>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>

@@ -63,18 +63,6 @@
             <p-fileUpload mode="basic" [(ngModel)]="formData.image" name="image" accept="image/*" (onUpload)="onUpload($event)" url="https://www.primefaces.org/cdn/api/upload.php" [auto]="true" chooselabel="Browse" id="upload"></p-fileUpload>
           </div>
           <div class="form-group">
-            <label for="" class="col-form-label">Mô tả</label>
-            <p-editor [(ngModel)]="formData.description" name="description" [style]="{ height: '250px' }"></p-editor>
-         </div>
-          <!-- <div class="form-group">
-            <label for="dated" class="col-form-label">Ngày tạo</label>
-            <input type="date" class="form-control" id="dated" [(ngModel)]="formData.dated" name="dated" required>
-          </div> -->
-          <!-- <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Người tạo</label>
-            <input type="text" class="form-control" id="recipient-name" [(ngModel)]="formData.creator" name="creator" required>
-          </div> -->
-          <div class="form-group">
             <label for="" class="col-form-label">Nội dung</label>
             <p-editor [(ngModel)]="formData.content" name="content" [style]="{ height: '300px' }"></p-editor>
          </div>
@@ -104,26 +92,31 @@
             <label for="recipient-name" class="col-form-label">Tên bài giới thiệu</label>
             <input type="text" class="form-control" id="recipient-name" [(ngModel)]="formData.name" name="name" required>
           </div>
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label for="message-text" class="col-form-label">Ảnh</label>
             <input type="file" class="form-control" id="message-text" [(ngModel)]="formData.image" name="image" required>
-          </div>
+          </div> -->
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Ảnh</label>
+            <img class="img-input" src="{{formData.image}}" alt="#">
+            <ng-container *ngIf="!formData.image">
+               <p-fileUpload mode="basic" [(ngModel)]="formData.image" name="image" accept="image/*" (onUpload)="onUpload($event)" url="https://www.primefaces.org/cdn/api/upload.php" [auto]="true" chooselabel="Browse" id="upload"></p-fileUpload>
+            </ng-container>
+            <ng-container *ngIf="formData.image">
+               <button class="btn btn-danger" (click)="deleteImage()" style="margin-top: 15px; margin-left: 45%;">Xóa ảnh</button>
+            </ng-container>
+
+         </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Mô tả</label>
-            <input type="text" class="form-control" id="recipient-name" [(ngModel)]="formData.description" name="description" required>
+            <p-editor [(ngModel)]="formData.description" name="description" [style]="{ height: '250px' }"></p-editor>
+
           </div>
-          <div class="form-group">
-            <label for="dated" class="col-form-label">Ngày tạo</label>
-            <input type="date" class="form-control"  value=" {{formData.dated | date : 'dd/MM/yyyy'}}" name="dated" required>
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Người tạo</label>
-            <input type="text" class="form-control" id="recipient-name" [(ngModel)]="formData.creator" name="creator" required>
-          </div>
+
           <div class="form-group">
             <label for="content" class="col-form-label">Nội dung</label>
             <!-- <input type="text" class="form-control" id="content" [(ngModel)]="formData.content" name="content" required> -->
-            <textarea rows="10" cols="50" pInputTextarea [(ngModel)]="formData.content" name="content"></textarea>
+            <p-editor [(ngModel)]="formData.content" name="content" [style]="{ height: '250px' }"></p-editor>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
@@ -155,11 +148,11 @@
           <div class="form-group">
             <label for="message-text" class="col-form-label">Ảnh</label>
             <input type="text" class="form-control" id="message-text" [(ngModel)]="formData.image" name="image" readonly>
-            <img src="assets/img/{{formData.image}}" alt="Lỗi" style="margin: 0px auto;">
+            <img class="img-input" src="{{formData.image}}" alt="#">
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Mô tả</label>
-            <input type="text" class="form-control" id="recipient-name" [(ngModel)]="formData.description" name="description" readonly>
+            <p-editor [(ngModel)]="formData.description" name="description" [style]="{ height: '150px' }" disabled="true"></p-editor>
           </div>
           <div class="form-group">
             <label for="dated" class="col-form-label">Ngày tạo</label>
@@ -171,8 +164,7 @@
           </div>
           <div class="form-group">
             <label for="content" class="col-form-label">Nội dung</label>
-            <textarea rows="10" cols="50" pInputTextarea [(ngModel)]="formData.content" name="content" readonly></textarea>
-            <!-- <input type="text" class="form-control" id="content" [(ngModel)]="formData.content" name="content" readonly> -->
+            <p-editor [(ngModel)]="formData.content" name="content" [style]="{ height: '250px' }"></p-editor>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
