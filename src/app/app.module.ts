@@ -28,7 +28,8 @@ import { SlidersService } from './services/sliders.service';
 import { BrandsService } from './services/brands.service';
 import { MoreImageComponent } from './moreImage/moreImage.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-
+import { EditorModule } from 'primeng/editor';
+import { FileUploadModule } from 'primeng/fileupload';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,8 +53,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    NgxPaginationModule
-
+    NgxPaginationModule,
+    EditorModule,
+    FileUploadModule
   ],
   providers: [CategoriesService, FeedbackService, HotlinesService, AcountsService, NewArticleService, MenusService, SlidersService, BrandsService],
   bootstrap: [AppComponent]

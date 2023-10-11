@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { IntroduceService } from '../services/introduce.service';
-
+interface UploadEvent {
+  originalEvent: Event;
+  files: File[];
+}
 @Component({
   selector: 'app-introduce',
   templateUrl: './introduce.component.html',
@@ -8,7 +11,14 @@ import { IntroduceService } from '../services/introduce.service';
 })
 export class IntroduceComponent implements OnInit {
   myResult:any;
-  formData:any={};
+  formData:any={
+    image: '',
+    name: '',
+    description: '',
+    content: '',
+    creator:'admin',
+    dated:new Date()
+  };
 
   constructor(private _introduceService:IntroduceService) { }
 
@@ -89,5 +99,21 @@ export class IntroduceComponent implements OnInit {
     if (closeElement) {
       closeElement.click();
     }
+  }
+
+  onUpload(event: UploadEvent) {
+    const file = event.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.formData.image = reader.result as string;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  deleteImage() {
+    this.formData.image = null;
   }
 }

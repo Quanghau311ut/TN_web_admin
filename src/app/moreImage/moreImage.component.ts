@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MoreImageService } from '../services/moreImage.service';
 import { ActivatedRoute } from '@angular/router';
 
+interface UploadEvent {
+  originalEvent: Event;
+  files: File[];
+}
 
 @Component({
   selector: 'app-moreImage',
@@ -10,21 +14,27 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MoreImageComponent implements OnInit {
   myResult: any;
-  formData: any = {};
+  formData: any = {
+    image: '',
+    // new_ID: '',
+    name_img: '',
+    dated: new Date(),
+    created: 'admin'
+  };
 
   constructor(
     private _moreImageService: MoreImageService,
     private route: ActivatedRoute
-    ) { }
+  ) { }
 
   ngOnInit() {
+    this.formData.NEW_ID = this.route.snapshot.paramMap.get('id');
     this.getData();
   }
 
 
   getData() {
-    const newId = this.route.snapshot.paramMap.get('id');
-    this._moreImageService.getByNewId(newId)
+    this._moreImageService.getByNewId(this.formData.NEW_ID)
       .then((result: any) => {
         this.myResult = result;
         console.log(this.myResult);
@@ -34,7 +44,7 @@ export class MoreImageComponent implements OnInit {
     this._moreImageService.create(this.formData)
       .then(response => {
         console.log("Thêm bản ghi thành công", response);
-        this. closeForm();
+        this.closeForm();
         this.getData();
       },
         error => {
@@ -95,6 +105,22 @@ export class MoreImageComponent implements OnInit {
       closeElement.click();
       this.formData = {};
     }
+  }
+
+  onUpload(event: UploadEvent) {
+    const file = event.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.formData.image = reader.result as string;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  deleteImage() {
+    this.formData.image = null;
   }
 
 }

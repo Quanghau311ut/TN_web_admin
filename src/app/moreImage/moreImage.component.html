@@ -17,7 +17,7 @@
                   <tr>
                      <th>STT</th>
                      <!-- <th>Tên ảnh</th> -->
-                     <th>Ảnh</th>
+                     <th>Tên</th>
                      <th>Ngày tạo</th>
 
                      <th></th>
@@ -27,7 +27,7 @@
                   <tr *ngFor="let item of myResult; let i = index" (click)="getDetail(item.id)">
                      <td>{{ i + 1 }}</td>
                      <!-- <td>{{ item.name_img }}</td> -->
-                     <td>{{ item.image }}</td>
+                     <td>{{ item.name_img }}</td>
                      <td>{{ item.dated| date:'dd/MM/yyyy'}}</td>
 
                      <td>
@@ -67,15 +67,13 @@
                </div>
                <div class="form-group">
                   <label for="" class="col-form-label">Mã bài viết</label>
-                  <input type="text" class="form-control" [(ngModel)]="formData.new_ID" name="new_ID" required>
+                  <input type="text" class="form-control" [(ngModel)]="formData.NEW_ID" name="new_ID" disabled="true">
                </div>
-               <div class="form-group">
-                  <label for="" class="col-form-label">Ngày tạo</label>
-                  <input type="date" class="form-control" [(ngModel)]="formData.dated" name="dated" required>
-               </div>
+
                <div class="form-group">
                   <label for="" class="col-form-label">Ảnh</label>
-                  <input type="text" class="form-control" [(ngModel)]="formData.image" name="image" required>
+                  <img class="img-input" src="{{formData.image}}" alt="">
+                  <p-fileUpload mode="basic" [(ngModel)]="formData.image" name="image" accept="image/*" (onUpload)="onUpload($event)" url="https://www.primefaces.org/cdn/api/upload.php" [auto]="true" chooselabel="Browse" id="upload"></p-fileUpload>
                </div>
                <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
@@ -114,7 +112,13 @@
              </div>
              <div class="form-group">
                 <label for="" class="col-form-label">Ảnh</label>
-                <input type="text" class="form-control" [(ngModel)]="formData.image" name="image" required>
+                <img class="img-input" src="{{formData.image}}" alt="">
+                  <ng-container *ngIf="!formData.image">
+                     <p-fileUpload mode="basic" [(ngModel)]="formData.image" name="image" accept="image/*" (onUpload)="onUpload($event)" url="https://www.primefaces.org/cdn/api/upload.php" [auto]="true" chooselabel="Browse"></p-fileUpload>
+                  </ng-container>
+                  <ng-container *ngIf="formData.image">
+                     <button class="btn btn-danger" (click)="deleteImage()" style="margin-top: 15px; margin-left: 45%;">Xóa ảnh</button>
+                  </ng-container>
              </div>
                <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
@@ -152,7 +156,7 @@
              </div>
              <div class="form-group">
                 <label for="" class="col-form-label">Ảnh</label>
-                <input type="text" class="form-control" [(ngModel)]="formData.image" name="image" readonly>
+                <img class="img-input" src="{{formData.image}}" alt="#">
              </div>
                <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>

@@ -63,46 +63,47 @@
 
                <div class="form-group">
                   <label for="recipient-name" class="col-form-label">Ảnh</label>
-                  <input type="text" class="form-control" id="Created" [(ngModel)]="formData.image" name="image" required>
-               </div>
+                  <!-- <input type="text" class="form-control" id="Created" [(ngModel)]="formData.image" name="image" required> -->
+                  <img class="img-input" src="{{formData.image}}" alt="">
+                  <p-fileUpload mode="basic" [(ngModel)]="formData.image" name="image" accept="image/*" (onUpload)="onUpload($event)" url="https://www.primefaces.org/cdn/api/upload.php" [auto]="true" chooselabel="Browse" id="upload"></p-fileUpload>
+
+                </div>
                <div class="form-group">
-                  <!-- <label for="recipient-name" class="col-form-label">Danh mục</label>
-                  <input type="text" class="form-control" [(ngModel)]="formData.categories_ID" name="categories_ID" required> -->
                   <label for="categories_ID">Danh mục:</label>
-                  <select id="categories_ID"[(ngModel)]="formData.categories_ID" name="categories_ID" style="border-color: #ccc;height: 40px;border-radius: 5px;" required >
+                  <select id="categories_ID" [(ngModel)]="formData.categories_ID" name="categories_ID" style="border-color: #ccc;height: 40px;border-radius: 5px;margin-left: 30px;" required>
                      <option value="2">Thông báo chính thức</option>
                      <option value="3">Hoạt động sinh viên</option>
                      <option value="4">Nghiên cứu và khoa học</option>
-                     <option value="5" >Thông báo học bổng và hỗ trợ tài chính</option>
+                     <option value="5">Thông báo học bổng và hỗ trợ tài chính</option>
                      <option value="6">Đối tác và hợp tác</option>
                      <option value="7">Chương trình học</option>
-                     <option value="8"selected>Hoạt động xã hội và văn hóa</option>
+                     <option value="8" selected>Hoạt động xã hội và văn hóa</option>
                   </select>
-                </div>
+               </div>
                <div class="form-group">
                   <label for="message-text" class="col-form-label">Tên bài viết</label>
                   <input type="text" class="form-control" [(ngModel)]="formData.name" name="name" required>
                </div>
                <div class="form-group">
                   <label for="" class="col-form-label">Mô tả</label>
-                  <input type="text" class="form-control" [(ngModel)]="formData.description" name="description" required>
+                  <p-editor [(ngModel)]="formData.description" name="description" [style]="{ height: '250px' }"></p-editor>
                </div>
                <div class="form-group">
                   <label for="" class="col-form-label">Nội dung</label>
-                  <input type="text" class="form-control" [(ngModel)]="formData.content" name="content" required>
+                  <p-editor [(ngModel)]="formData.content" name="content" [style]="{ height: '300px' }"></p-editor>
                </div>
-               <div class="form-group">
-                  <label for="" class="col-form-label">Ngày tạo</label>
-                  <input type="date" class="form-control" [(ngModel)]="formData.dated" name="dated" required>
-               </div>
-               <div class="form-group">
-                  <label for="" class="col-form-label">Người tạo</label>
-                  <input type="text" class="form-control" [(ngModel)]="formData.created" name="created" required>
-               </div>
-               <div class="form-group">
-                  <label for="" class="col-form-label">ListMoreImage</label>
-                  <input type="text" class="form-control" [(ngModel)]="formData.ListMoreImage" name="ListMoreImage" required>
-               </div>
+               <!-- <div class="form-group">
+                                                <label for="" class="col-form-label">Ngày tạo</label>
+                                                <input type="hidden" class="form-control" [(ngModel)]="formData.dated" name="dated" required>
+                                             </div>
+                                             <div class="form-group">
+                                                <label for="" class="col-form-label">Người tạo</label>
+                                                <input type="hidden" class="form-control" [(ngModel)]="formData.created" name="created" required>
+                                             </div>
+                                             <div class="form-group">
+                                                <label for="" class="col-form-label">ListMoreImage</label>
+                                                <input type="hidden" class="form-control" [(ngModel)]="formData.ListMoreImage" name="ListMoreImage" value="0" required>
+                                             </div> -->
                <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
                   <button type="submit" class="btn btn-primary">Thêm mới</button>
@@ -128,12 +129,19 @@
             <form (ngSubmit)="confirmEdit()">
                <div class="form-group">
                   <label for="recipient-name" class="col-form-label">Ảnh</label>
-                  <input type="text" class="form-control" id="Created" [(ngModel)]="formData.image" name="image" required>
+                  <img class="img-input" src="{{formData.image}}" alt="">
+                  <ng-container *ngIf="!formData.image">
+                     <p-fileUpload mode="basic" [(ngModel)]="formData.image" name="image" accept="image/*" (onUpload)="onUpload($event)" url="https://www.primefaces.org/cdn/api/upload.php" [auto]="true" chooselabel="Browse" id="upload"></p-fileUpload>
+                  </ng-container>
+                  <ng-container *ngIf="formData.image">
+                     <button class="btn btn-danger" (click)="deleteImage()" style="margin-top: 15px; margin-left: 45%;">Xóa ảnh</button>
+                  </ng-container>
+
                </div>
                <div class="form-group">
                   <div class="form-group">
                      <a href="/more-image/{{formData.id}}" class="btn btn-success">
-                        Ảnh khác
+                        Thư mục ảnh
                      </a>
                   </div>
                </div>
@@ -147,12 +155,12 @@
                </div>
                <div class="form-group">
                   <label for="Created" class="col-form-label">Mô tả</label>
-                  <input type="text" class="form-control" id="Created" [(ngModel)]="formData.description" name="description" required>
+                  <p-editor [(ngModel)]="formData.description" name="description" [style]="{ height: '250px' }"></p-editor>
+
                </div>
                <div class="form-group">
                   <label for="Created" class="col-form-label">Nội dung</label>
-                  <!-- <input type="text" class="form-control" id="Created" [(ngModel)]="formData.content" name="content" required> -->
-                  <textarea rows="10" cols="50" pinputtextarea [(ngModel)]="formData.content" name="content"></textarea>
+                  <p-editor [(ngModel)]="formData.content" name="content" [style]="{ height: '250px' }"></p-editor>
                </div>
                <div class="form-group">
                   <label for="Created" class="col-form-label">Ngày tạo</label>
@@ -186,15 +194,13 @@
             <form (ngSubmit)="confirmEdit()">
                <div class="form-group">
                   <label for="recipient-name" class="col-form-label">Ảnh</label>
-                  <img
-                  src="/assets/img/NewArticle/{{formData.image}}" alt="#" style="width: 100%; height: 50%;;margin-top: 10px;margin-bottom: 10px;">
-               <!-- <input type="text" class="form-control" id="Created" [(ngModel)]="formData.image" name="image" readonly> -->
+                  <img class="img-input" src="{{formData.image}}" alt="">
                </div>
                <div class="form-group">
                   <label for="recipient-name" class="col-form-label">Ảnh khác</label>
                   <div class="row">
                      <div class="col-3" *ngFor="let item of formData.listMoreImage">
-                        <img id="more-image" src="/assets/img/MoreImage/{{item.moreImage}}" alt="#" style="width: 100px;height: 80px;margin: 10px 0px;">
+                        <img id="more-image" src="{{item.moreImage}}" alt="#" style="width: 230px;height: 180px;margin: 10px 0px;">
                      </div>
                   </div>
                </div>
@@ -208,12 +214,12 @@
                </div>
                <div class="form-group">
                   <label for="Created" class="col-form-label">Mô tả</label>
-                  <input type="text" class="form-control" [(ngModel)]="formData.description" name="description" readonly>
+                  <p-editor [(ngModel)]="formData.description" name="description" [style]="{ height: '250px' }" [readonly]="true"></p-editor>
+
                </div>
                <div class="form-group">
                   <label for="Created" class="col-form-label">Nội dung</label>
-                  <!-- <input type="text" class="form-control" id="Created" [(ngModel)]="formData.content" name="content" readonly> -->
-                  <textarea rows="10" cols="50" pinputtextarea [(ngModel)]="formData.content" name="content" readonly></textarea>
+                  <p-editor [(ngModel)]="formData.content" name="content" [style]="{ height: '250px' }" [readonly]="true"></p-editor>
                </div>
                <div class="form-group">
                   <label for="Created" class="col-form-label">Ngày tạo</label>

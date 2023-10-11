@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NewArticleService } from '../services/newArticle.service';
 
-interface category {
-  id: number,
-  name: string
-
+interface UploadEvent {
+  originalEvent: Event;
+  files: File[];
 }
+
 @Component({
   selector: 'app-newArticle',
   templateUrl: './newArticle.component.html',
@@ -13,18 +13,23 @@ interface category {
 })
 export class NewArticleComponent implements OnInit {
   myResult: any;
-  formData: any = {};
+  formData: any = {
+    image: '',
+    categories_ID: '',
+    name: '',
+    description: '',
+    content: '',
+    dated: new Date(),
+    created: 'admin',
+    ListMoreImage: '0'
+  };
 
-
-  // catNew!: category[];
-  // categories_ID!: category[];
   constructor(private _newArticleService: NewArticleService) { }
 
   ngOnInit() {
     this.getData();
 
   }
-
   getData() {
     this._newArticleService.getData()
       .then((result: any) => {
@@ -41,6 +46,7 @@ export class NewArticleComponent implements OnInit {
       }, error => {
         console.log('Lỗi', error);
       })
+
   }
 
   getDetail(id: number) {
@@ -52,16 +58,17 @@ export class NewArticleComponent implements OnInit {
       })
   }
 
-  listImage(id:number){
+  listImage(id: number) {
     this._newArticleService.ListImage(id)
-    .then((editData: any) => {
-      this.formData = editData as any[];
-    }, error => {
-      console.error('Lỗi', error);
-    })
+      .then((editData: any) => {
+        this.formData = editData as any[];
+      }, error => {
+        console.error('Lỗi', error);
+      })
   }
 
   edit(id: number) {
+    // const data = this.onBeforeSave();
     this._newArticleService.edit(id, this.formData)
       .then(response => {
         console.log('Sửa thành công', response);
@@ -93,6 +100,27 @@ export class NewArticleComponent implements OnInit {
     }
   }
 
+  // onBeforeSave() {
+  //   const formData = new FormData();
+  //   if (this.formData.image)
+  //     formData.append('file', this.formData.image);
+  //   if (this.formData.categories_ID)
+  //     formData.append('categories_ID', this.formData.categories_ID);
+  //   if (this.formData.ListMoreImage)
+  //     formData.append('ListMoreImage', this.formData.ListMoreImage);
+  //   if (this.formData.created)
+  //     formData.append('created', this.formData.created);
+  //   if (this.formData.dated)
+  //     formData.append('dated', this.formData.dated);
+  //   if (this.formData.content)
+  //     formData.append('content', this.formData.content);
+  //   if (this.formData.description)
+  //     formData.append('description', this.formData.description);
+  //   if (this.formData.name)
+  //     formData.append('name', this.formData.name);
+  //   return formData;
+  // }
+
   closeForm() {
     const closeElement = document.getElementById('close-form');
     if (closeElement) {
@@ -107,4 +135,20 @@ export class NewArticleComponent implements OnInit {
       this.formData = {};
     }
   }
+  onUpload(event: UploadEvent) {
+    const file = event.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.formData.image = reader.result as string;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  deleteImage() {
+    this.formData.image = null;
+  }
 }
+
