@@ -30,6 +30,8 @@ import { MoreImageComponent } from './moreImage/moreImage.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { EditorModule } from 'primeng/editor';
 import { FileUploadModule } from 'primeng/fileupload';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +57,9 @@ import { FileUploadModule } from 'primeng/fileupload';
     BrowserAnimationsModule,
     NgxPaginationModule,
     EditorModule,
-    FileUploadModule
+    FileUploadModule,
+
+
   ],
   providers: [CategoriesService, FeedbackService, HotlinesService, AcountsService, NewArticleService, MenusService, SlidersService, BrandsService],
   bootstrap: [AppComponent]

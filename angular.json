@@ -41,6 +41,7 @@
 
             ],
             "scripts": [
+
               "node_modules/quill/dist/quill.js",
               "node_modules/jquery/dist/jquery.min.js"
 
