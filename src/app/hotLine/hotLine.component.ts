@@ -9,7 +9,7 @@ import { HotlinesService } from '../services/hotlines.service';
 export class HotLineComponent implements OnInit {
   myResult:any;
   formData:any={};
-
+  p: number = 1;
   constructor(private _hotlineService:HotlinesService) { }
 
   ngOnInit() {

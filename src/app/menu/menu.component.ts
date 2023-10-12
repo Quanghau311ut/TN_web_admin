@@ -14,6 +14,7 @@ export class MenuComponent implements OnInit {
     creator: 'admin',
     dated: new Date()
   };
+  p: number = 1;
   constructor(private _menuService: MenusService) { }
 
   ngOnInit() {

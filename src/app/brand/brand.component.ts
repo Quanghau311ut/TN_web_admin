@@ -19,6 +19,7 @@ export class BrandComponent implements OnInit {
     content: '',
     dated: new Date(),
   };
+  p: number = 1;
   constructor(private _brandService: BrandsService) { }
 
   ngOnInit() {

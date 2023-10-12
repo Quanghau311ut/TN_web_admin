@@ -10,6 +10,7 @@ import { AcountsService } from '../services/acounts.service';
 export class AcountComponent implements OnInit {
   myResult:any;
   formData:any={};
+  p: number = 1;
   constructor(private _acountService:AcountsService) { }
 
   ngOnInit() {

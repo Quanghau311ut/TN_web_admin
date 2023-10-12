@@ -21,7 +21,7 @@ export class MoreImageComponent implements OnInit {
     dated: new Date(),
     created: 'admin'
   };
-
+  p: number = 1;
   constructor(
     private _moreImageService: MoreImageService,
     private route: ActivatedRoute

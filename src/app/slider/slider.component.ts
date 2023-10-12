@@ -21,6 +21,7 @@ export class SliderComponent implements OnInit {
     content: '',
     dated: new Date(),
   };
+  p: number = 1;
   constructor( private _sliderService: SlidersService) { }
 
   ngOnInit() {

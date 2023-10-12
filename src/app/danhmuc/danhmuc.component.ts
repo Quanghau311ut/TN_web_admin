@@ -16,6 +16,7 @@ export class DanhmucComponent implements OnInit {
     created: 'admin',
     newActicles: [],
   };
+  p: number = 1;
 
   constructor(
     private _categoriesService: CategoriesService

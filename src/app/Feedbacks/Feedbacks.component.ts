@@ -10,7 +10,7 @@ export class FeedbacksComponent implements OnInit {
 
   myResult: any;
   formData: any = {};
-
+  p: number = 1;
   constructor(private _feedbackService: FeedbackService) { }
 
   ngOnInit() {

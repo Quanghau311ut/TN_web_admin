@@ -19,6 +19,7 @@ export class IntroduceComponent implements OnInit {
     creator:'admin',
     dated:new Date()
   };
+  p: number = 1;
 
   constructor(private _introduceService:IntroduceService) { }
 

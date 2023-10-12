@@ -23,7 +23,7 @@ export class NewArticleComponent implements OnInit {
     created: 'admin',
     ListMoreImage: '0'
   };
-
+  p: number = 1;
   constructor(private _newArticleService: NewArticleService) { }
 
   ngOnInit() {
