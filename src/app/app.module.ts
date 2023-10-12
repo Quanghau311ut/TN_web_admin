@@ -32,7 +32,6 @@ import { EditorModule } from 'primeng/editor';
 import { FileUploadModule } from 'primeng/fileupload';
 import { DialogModule } from 'primeng/dialog';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,8 +47,8 @@ import { DialogModule } from 'primeng/dialog';
     MenuComponent,
     BrandComponent,
     SliderComponent,
-      MoreImageComponent,
-   ],
+    MoreImageComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -59,8 +58,7 @@ import { DialogModule } from 'primeng/dialog';
     NgxPaginationModule,
     EditorModule,
     FileUploadModule,
-   DialogModule,
-
+    DialogModule,
   ],
   providers: [CategoriesService, FeedbackService, HotlinesService, AcountsService, NewArticleService, MenusService, SlidersService, BrandsService],
   bootstrap: [AppComponent]
